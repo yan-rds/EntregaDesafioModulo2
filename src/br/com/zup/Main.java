@@ -63,6 +63,16 @@ public class Main {
             break;
             case 2:
                 // Sistema para remover funcionários
+                System.out.println("Digite o CPF do funcionário que você deseja remover");
+                cpf = leitor.next();
+                // Condicional pra verificar se esse usuário está cadastrado
+                if (cadastro.containsKey(cpf)){
+                    cadastro.remove(cpf);
+                    System.out.println("Funcionário removido.");
+                }
+                else {
+                    System.out.println("Este funcionário não está cadastrado, confira se digitou corretamente");
+                }
             break;
             case 3:
                 // Exibir a lista de funcionários
