@@ -1,5 +1,7 @@
 package br.com.zup;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +11,14 @@ public class Main {
 
         // Variáveis
         int escolhaMenu;
+        int qtdeFuncionariosADD;
+        String cpf;
+        String nome;
+        String telefone;
+        String email;
+
+        // Lista
+        HashMap<String, String> cadastro = new HashMap<>();
 
 
         // Primeira parte do console
@@ -24,7 +34,21 @@ public class Main {
         switch (escolhaMenu){
             case 1:
                 // Sistema para adicionar funcionários
-
+                System.out.println("Quantos funcionários deseja adicionar?");
+                qtdeFuncionariosADD = leitor.nextInt();
+                for (int i = 1; i<=qtdeFuncionariosADD; i++){
+                    System.out.println("Por favor insira o CPF do funcionário");
+                    cpf = leitor.next();
+                    System.out.println("Nome");
+                    leitor.nextLine();
+                    nome = leitor.nextLine();
+                    System.out.println("Telefone");
+                    telefone = leitor.next();
+                    System.out.println("E-mail");
+                    email = leitor.next();
+                    cadastro.put(cpf, "Nome do funcionário: " + nome + " Dados de contato - "
+                            + "Telefone: " + telefone + " E-mail: " + email);
+                }
             break;
             case 2:
                 // Sistema para remover funcionários
