@@ -20,6 +20,11 @@ public class Main {
         // Lista
         HashMap<String, String> cadastro = new HashMap<>();
 
+        // Simulação de um banco de dados para teste
+        cadastro.put("123", "abc");
+        cadastro.put("234", "bcd");
+        cadastro.put("345", "cde");
+
 
         // Primeira parte do console
         System.out.println("Sistema de gerenciamento de funcionários");
@@ -67,8 +72,8 @@ public class Main {
                 cpf = leitor.next();
                 // Condicional pra verificar se esse usuário está cadastrado
                 if (cadastro.containsKey(cpf)){
+                    System.out.println("Funcionário removido: "+cadastro.get(cpf));
                     cadastro.remove(cpf);
-                    System.out.println("Funcionário removido.");
                 }
                 else {
                     System.out.println("Este funcionário não está cadastrado, confira se digitou corretamente");
@@ -76,7 +81,9 @@ public class Main {
             break;
             case 3:
                 // Exibir a lista de funcionários
-
+                for (String referencia : cadastro.values()){
+                    System.out.println(referencia);
+                }
             break;
             default:
                 // Número inválido
