@@ -19,5 +19,22 @@ public class Main {
         System.out.println("2 - Remover funcionários");
         System.out.println("3 - Exibir a lista de funcionários");
         escolhaMenu = leitor.nextInt();
+
+        // Estrutura de decisão - Menu
+        switch (escolhaMenu){
+            case 1:
+                // Sistema para adicionar funcionários
+
+            break;
+            case 2:
+                // Sistema para remover funcionários
+            break;
+            case 3:
+                // Exibir a lista de funcionários
+
+            break;
+            default:
+                // Número inválido
+        }
     }
 }
