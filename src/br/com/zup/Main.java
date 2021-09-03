@@ -15,78 +15,82 @@ public class Main {
         String nome;
         String telefone;
         String email;
-        String confirmarADD = "sim";
+        String confirmarADD;
+        String repeticaoMenu = "sim";
 
         // Lista
         HashMap<String, String> cadastro = new HashMap<>();
 
-        // Simulação de um banco de dados para teste
-        cadastro.put("123", "abc");
-        cadastro.put("234", "bcd");
-        cadastro.put("345", "cde");
-
 
         // Primeira parte do console
+        System.out.println();
         System.out.println("Sistema de gerenciamento de funcionários");
         System.out.println();
-        System.out.println("Utilize os números indicados para navegar pelo menu");
-        System.out.println("1 - Adicionar funcionários");
-        System.out.println("2 - Remover funcionários");
-        System.out.println("3 - Exibir a lista de funcionários");
-        escolhaMenu = leitor.nextInt();
 
-        // Estrutura de decisão - Menu
-        switch (escolhaMenu){
-            case 1: // Sistema para adicionar funcionários
-                // O próximo while permite a repetição da adição de novos funcionários
-                while (confirmarADD.equalsIgnoreCase("sim")) {
-                    System.out.println("Quantos funcionários deseja adicionar?");
-                    qtdeFuncionariosADD = leitor.nextInt();
-                    for (int i = 1; i <= qtdeFuncionariosADD; i++) {
-                        System.out.println("Por favor insira o CPF do funcionário");
-                        cpf = leitor.next();
+        // Repetição do Menu ao final de uma escolha do usuário
+        while (repeticaoMenu.equalsIgnoreCase("sim")) {
+            System.out.println("Utilize os números indicados para navegar pelo menu");
+            System.out.println("1 - Adicionar funcionários");
+            System.out.println("2 - Remover funcionários");
+            System.out.println("3 - Exibir a lista de funcionários");
+            escolhaMenu = leitor.nextInt();
+
+            // Estrutura de decisão - Menu
+            switch (escolhaMenu) {
+                case 1: // Sistema para adicionar funcionários
+                    // O próximo while permite a repetição da adição de novos funcionários
+                    confirmarADD = "Sim";
+                    while (confirmarADD.equalsIgnoreCase("sim")) {
+                        System.out.println("Quantos funcionários deseja adicionar?");
+                        qtdeFuncionariosADD = leitor.nextInt();
+                        for (int i = 1; i <= qtdeFuncionariosADD; i++) {
+                            System.out.println("Por favor insira o CPF do funcionário");
+                            cpf = leitor.next();
                             // Condicional que verificará se o CPF é repetido
-                        if (cadastro.containsKey(cpf)){
-                            System.out.print("Este CPF já foi cadastrado");
+                            if (cadastro.containsKey(cpf)) {
+                                System.out.print("Este CPF já foi cadastrado");
+                            } else {
+                                System.out.println("Nome");
+                                leitor.nextLine();
+                                nome = leitor.nextLine();
+                                System.out.println("Telefone");
+                                telefone = leitor.nextLine();
+                                System.out.println("E-mail");
+                                email = leitor.next();
+                                cadastro.put(cpf, "Nome do funcionário: " + nome + "\n" + "Dados de contato - "
+                                        + "Telefone: " + telefone + " E-mail: " + email);
+                            }
                         }
-                        else {
-                            System.out.println("Nome");
-                            leitor.nextLine();
-                            nome = leitor.nextLine();
-                            System.out.println("Telefone");
-                            telefone = leitor.next();
-                            System.out.println("E-mail");
-                            email = leitor.next();
-                            cadastro.put(cpf, "Nome do funcionário: " + nome + " Dados de contato - "
-                                    + "Telefone: " + telefone + " E-mail: " + email);
-                        }
+                        System.out.println();
+                        System.out.println("Deseja inserir mais algum funcionário? Responda com Sim ou Não");
+                        confirmarADD = leitor.next();
                     }
-                    System.out.println();
-                    System.out.println("Deseja inserir mais algum funcionário? Responda com Sim ou Não");
-                    confirmarADD = leitor.next();
-                }
-            break;
-            case 2:
-                // Sistema para remover funcionários
-                System.out.println("Digite o CPF do funcionário que você deseja remover");
-                cpf = leitor.next();
-                // Condicional pra verificar se esse usuário está cadastrado
-                if (cadastro.containsKey(cpf)){
-                    System.out.println("Funcionário removido: "+cadastro.get(cpf));
-                    cadastro.remove(cpf);
-                }
-                else {
-                    System.out.println("Este funcionário não está cadastrado, confira se digitou corretamente");
-                }
-            break;
-            case 3:
-                // Exibir a lista de funcionários
-                for (String referencia : cadastro.values()){
-                    System.out.println(referencia);
-                }
-            break;
-            default:
-                // Número inválido
+                    break;
+                case 2:
+                    // Sistema para remover funcionários
+                    System.out.println("Digite o CPF do funcionário que você deseja remover");
+                    cpf = leitor.next();
+                    // Condicional pra verificar se esse usuário está cadastrado
+                    if (cadastro.containsKey(cpf)) {
+                        System.out.println("Funcionário removido: \n" + cadastro.get(cpf));
+                        cadastro.remove(cpf);
+                    } else {
+                        System.out.println("Este funcionário não está cadastrado, confira se digitou corretamente");
+                    }
+                    break;
+                case 3:
+                    // Exibir a lista de funcionários
+                    for (String referencia : cadastro.values()) {
+                        System.out.println(referencia);
+                    }
+                    break;
+                default:
+                    // Número inválido
+                    System.out.println("Você digitou uma opção inválida");
+            }
+            System.out.println("Deseja voltar ao menu principal? Responda com Sim ou Não");
+            repeticaoMenu = leitor.next();
         }
+        System.out.println("Encerrando o sistema");
     }
 }
