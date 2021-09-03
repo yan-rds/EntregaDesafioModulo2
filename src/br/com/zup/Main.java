@@ -16,6 +16,7 @@ public class Main {
         String nome;
         String telefone;
         String email;
+        String confirmarADD = "sim";
 
         // Lista
         HashMap<String, String> cadastro = new HashMap<>();
@@ -32,22 +33,26 @@ public class Main {
 
         // Estrutura de decisão - Menu
         switch (escolhaMenu){
-            case 1:
-                // Sistema para adicionar funcionários
-                System.out.println("Quantos funcionários deseja adicionar?");
-                qtdeFuncionariosADD = leitor.nextInt();
-                for (int i = 1; i<=qtdeFuncionariosADD; i++){
-                    System.out.println("Por favor insira o CPF do funcionário");
-                    cpf = leitor.next();
-                    System.out.println("Nome");
-                    leitor.nextLine();
-                    nome = leitor.nextLine();
-                    System.out.println("Telefone");
-                    telefone = leitor.next();
-                    System.out.println("E-mail");
-                    email = leitor.next();
-                    cadastro.put(cpf, "Nome do funcionário: " + nome + " Dados de contato - "
-                            + "Telefone: " + telefone + " E-mail: " + email);
+            case 1: // Sistema para adicionar funcionários
+                // O próximo while permite a repetição da adição de novos funcionários
+                while (confirmarADD.equalsIgnoreCase("sim")) {
+                    System.out.println("Quantos funcionários deseja adicionar?");
+                    qtdeFuncionariosADD = leitor.nextInt();
+                    for (int i = 1; i <= qtdeFuncionariosADD; i++) {
+                        System.out.println("Por favor insira o CPF do funcionário");
+                        cpf = leitor.next();
+                        System.out.println("Nome");
+                        leitor.nextLine();
+                        nome = leitor.nextLine();
+                        System.out.println("Telefone");
+                        telefone = leitor.next();
+                        System.out.println("E-mail");
+                        email = leitor.next();
+                        cadastro.put(cpf, "Nome do funcionário: " + nome + " Dados de contato - "
+                                + "Telefone: " + telefone + " E-mail: " + email);
+                    }
+                    System.out.println("Deseja inserir mais algum funcionário? Responda com Sim ou Não");
+                    confirmarADD = leitor.next();
                 }
             break;
             case 2:
